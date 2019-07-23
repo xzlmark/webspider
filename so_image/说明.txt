@@ -1,0 +1,25 @@
+这个项目的功能是在http://image.so.com/中下载专题（艺术、美女、汽车等）下面的所有图片，是学习下载图片的很好的例子，
+同时也学习了动态获取数据的知识，即当页面加载到中下部的时候，自动加载后面的内容。
+
+一、打开http://image.so.com/z?ch=art页面后，当鼠标滑动到中下部的时候，页面自动加载图片。通过抓包工具查看，得到了
+下面的jQuery接口：
+http://image.so.com/zjl?ch=beauty&sn=30&listtype=new&temp=1
+
+通过实验，得到：
+ch 后面是类别
+sn 是加载的页面数据，每次30
+其余参数不用修改。
+
+一、在setting文件中，将图片管道开启：
+ITEM_PIPELINES = {
+    'scrapy.pipelines.images.ImagesPipeline': 1,
+}
+IMAGES_STORE = 'download_images'
+
+二、编写spider
+# 提取所有图片下载url 到一个列表， 赋给item的'image_urls'字段，注意：image_urls里面存的是列表，这里可以通过推导式进行赋值。
+
+infos = json.loads(response.body.decode('utf8'))    #加载的内容是一个json格式的字符串，所有将json转为字典格式的数据
+        # 提取所有图片下载URL到一个列表，赋给item的'image_urls'
+        # json文件中有一个list列表，列表中才有图片URL;下面这种是列表推导式
+        yield {'image_urls': [info['qhimg_url'] for info in infos['list']]}

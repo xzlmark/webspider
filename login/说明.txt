@@ -1,0 +1,10 @@
+这个项目的功能是实现登录，然后获取需要登录后才能得到的数据。
+爬取的网站是：http://example.webscraping.com
+
+在写登录爬虫时，要使用scrapy.http.FormRequest对象，他的好处是将
+form表单的数据提交到服务器，这包括用户输入的数据还有隐藏的数据。
+
+一、覆写父类的start_requests()方法，让程序开始就先执行登录操作
+二、写登录的代码，将表单数据提交给FormRequest对象,然后将请求发送给服务器；
+三、发送给服务器后，如果登陆成功，就会跳转到登陆后的页面，如果需要进入到start_urls中的网址，
+	需要用yield from super().strat_requests()，这样才会返回抓取数据的页面。

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>云团</title>
+</head>
+<body>
+<img src="{{ url_for('static',filename ='logo.png') }}">
+    <form action="{{ url_for('first_blue.weixin') }}" name="weixinForm">
+微信名：<input type="text" name="weixin">
+        <button type="submit">查询前三条!</button>
+<br />
+</form>
+
+<form name="douyini" action="{{ url_for('first_blue.douyin') }}" method="get">
+    <select name="type">
+  <option value="1">娱乐</option>
+  <option value="2">才艺</option>
+  <option value="3">萌宠</option>
+  <option value="4">搞笑</option>
+    <option value="5">二次元</option>
+  <option value="6">游戏</option>
+  <option value="7">家居</option>
+  <option value="8">美食</option>
+      <option value="9">旅游</option>
+  <option value="10">健康</option>
+  <option value="11">企业</option>
+  <option value="12">体育</option>
+      <option value="13">教育</option>
+  <option value="14">科技</option>
+  <option value="15">汽车</option>
+  <option value="16">情感</option>
+      <option value="17">时尚</option>
+  <option value="18">文化</option>
+  <option value="19">社会</option>
+</select>
+    <button type="submit">查看抖音排行榜!</button>
+</form>
+
+
+
+
+
+</body>
+</html>

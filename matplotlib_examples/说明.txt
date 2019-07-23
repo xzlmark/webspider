@@ -1,0 +1,16 @@
+这个项目演示的主要是scrapy下载文件的使用
+
+将https://matplotlib.org/examples/index.html上面的所有例子的源码下载下来。
+
+一、创建项目及spider
+二、在配置文件中开启FilesPipeline，并指定下载目录
+	ITEM_PIPELINES = {# 'scrapy.pipelines.files.FilesPipeline':1,  #默认，未修改文件名，这个文件名很长，也没有分类
+						'matplotlib_examples.pipelines.MyFilesPipeline':1  # 编写了管道，通过url地址自动修改文件名和分类
+						                                                   # 存储，值得仔细学习。
+						}
+	FILES_STORE ='examples_src'
+
+三、在item中定义file_urls及files两个字段 ，这个两个字段是图片管道自身拥有的属性
+四、实现spider，其中一个负责在页面中抓取所有链接，一个负责解析具体页面中的下载链接
+
+五、这个例子中定义了管道，实现了根据网址自动创建文件夹及自动命名文件，这个值得学习

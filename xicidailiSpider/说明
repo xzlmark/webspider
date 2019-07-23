@@ -1,0 +1,11 @@
+这个项目的功能是将 https://www.xicidaili.com/nn/ 中的IP和port进行提取，并存入数据库，包括MySQL、MongoDB
+
+一、要将数据存入数据库，就必须在item中定义字段
+ip = scrapy.Field()
+port = scrapy.Field()
+
+二、在pipelines 中写存入数据库的方法，并且在setting文件中开启
+
+三、编写spider的时候，要注意yield 需要存入数据库的字段内容。
+
+四、注意事项：数据存入数据库，最好要项目运行的时候打开一次数据库，项目结束的时候关闭数据库。
